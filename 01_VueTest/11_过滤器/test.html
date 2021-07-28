@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <h2>显示格式化的日期时间</h2>
+        <p>{{time}}</p>
+        <p>{{time | dateString}}</p>
+        <p>{{time | dateString('YYYY-MM-DD')}}</p>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
+    <script src="../js/vue.js"></script>
+    <script>
+        Vue.filter('dateString', function (value, format = "YYYY-MM-DD HH:mm:ss") {
+            /* 
+                value 就是 time
+                dateString前面那一个值
+             */
+            return moment(value).format(format);
+        })
+
+        new Vue({
+            el: '#demo',
+            data: {
+                time: new Date(),
+            },
+            mounted() {
+                setInterval(() => { this.time = new Date() }, 1000)
+            }
+        })
+    </script>
+</body>
+
+</html>

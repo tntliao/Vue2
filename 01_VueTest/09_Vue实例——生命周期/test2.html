@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+
+     -->
+    <div id="test">
+        <button @click="destroyVue">destory vue</button>
+        <p v-if="isShow">尚硅谷IT教育</p>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#test',
+            data: {
+                isShow: true
+            },
+
+            beforeCreate() {
+                console.log('beforeCrete()');
+            },
+
+            create() {
+                console.log('create()');
+            },
+
+            beforeMount() {
+                console.log('beforeMount()');
+            },
+
+            mounted() {
+                console.log('mounted()');
+                // 执行异步任务
+                this.intervalId = setInterval(() => {
+                    console.log('-----')
+                    this.isShow = !this.isShow
+                }, 1000)
+            },
+
+            beforeUpdate() {
+                console.log('beforeUpdate');
+            },
+
+            updated() {
+                console.log('updated');
+            },
+
+            beforeDestroy() {
+                console.log('beforeDestroy');
+                // 执行收尾工作
+                clearInterval(this.intervalId);
+            },
+
+            destroyed() {
+                console.log('destoryed()');
+            },
+
+            methods: {
+                destroyVue() {
+                    this.$destroy()
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

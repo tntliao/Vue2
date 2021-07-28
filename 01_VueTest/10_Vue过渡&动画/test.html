@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 指定过渡样式 */
+        .demo1-enter-active,
+        .demo1-leave-active {
+            transition: opacity 1s;
+        }
+
+        /* 指定隐藏时的样式 */
+        .demo1-enter,
+        .demo1-leave-to {
+            opacity: 0;
+        }
+
+
+        .demo2-enter-active {
+            transition: all 1s;
+        }
+
+        .demo2-leave-active {
+            transition: all 3s;
+        }
+
+        .demo2-enter,
+        .demo2-leave-to {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <button @click="show = !show">Toggle</button>
+        <transition name="demo1">
+            <p v-show="show">hello</p>
+        </transition>
+    </div>
+
+    <div id="demo2">
+        <button @click="show = !show">Toggle</button>
+        <transition name="demo2">
+            <p v-show="show">hello</p>
+        </transition>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#demo',
+            data: {
+                show: true
+            }
+        })
+
+        new Vue({
+            el: '#demo2',
+            data: {
+                show: true
+            }
+        })
+    </script>
+</body>
+
+</html>
